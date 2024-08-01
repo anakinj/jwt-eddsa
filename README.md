@@ -10,10 +10,17 @@ Work is currently done in [ruby-jwt](https://github.com/jwt/ruby-jwt/pull/607) t
 
 ## Usage
 
-TODO: Write usage instructions here
+Will only work with the WIP branch, so adding the following to your applications gemfile:
+```
+gem "jwt", github: "anakinj/ruby-jwt", branch: "extendable-algos"
+```
 
 ## Development
 
+```
+bundle install
+bundle exec rspec
+```
 
 ## Contributing
 

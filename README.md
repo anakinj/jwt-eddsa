@@ -2,6 +2,10 @@
 
 A library extending the ruby-jwt gem with EdDSA algorithms
 
+**NOTE: This gem is still WIP**
+
+Work is currently done in [ruby-jwt](https://github.com/jwt/ruby-jwt/pull/607) to allow extending the algorithms.
+
 ## Installation
 
 ## Usage

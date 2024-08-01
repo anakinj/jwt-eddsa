@@ -13,6 +13,7 @@ Plan is to replace rbnacl with something else in the near future.
 Will only work with the WIP branch, so adding the following to your the Gemfile should do the trick:
 ```
 gem "jwt", github: "anakinj/ruby-jwt", branch: "extendable-algos"
+gem "jwt-eddsa"
 ```
 
 ```

@@ -6,13 +6,25 @@ A library extending the ruby-jwt gem with EdDSA algorithms
 
 Work is currently done in [ruby-jwt](https://github.com/jwt/ruby-jwt/pull/607) to allow extending the algorithms.
 
+Plan is to replace rbnacl with something else in the near future.
+
 ## Installation
+
+Will only work with the WIP branch, so adding the following to your the Gemfile should do the trick:
+```
+gem "jwt", github: "anakinj/ruby-jwt", branch: "extendable-algos"
+```
+
+```
+require "jwt/eddsa" # not verified if this actually works
+```
 
 ## Usage
 
-Will only work with the WIP branch, so adding the following to your applications gemfile:
-```
-gem "jwt", github: "anakinj/ruby-jwt", branch: "extendable-algos"
+```ruby
+private_key = RbNaCl::Signatures::Ed25519::SigningKey.new("b" * 32)
+token = JWT.encode({pay: "load"}, private_key, "EdDSA")
+payload, header = JWT.decode(token, private_key.verify_key, true, algorithm: "EdDSA")
 ```
 
 ## Development

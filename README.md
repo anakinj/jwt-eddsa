@@ -1,6 +1,6 @@
 # jwt-eddsa
 
-A library extending the ruby-jwt gem with EdDSA algorithms
+A library extending the ruby-jwt gem with EdDSA algorithms. Based on [RFC 8037](https://datatracker.ietf.org/doc/html/rfc8037).
 
 **NOTE: This gem is still WIP**
 

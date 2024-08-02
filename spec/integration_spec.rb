@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "securerandom"
+
 RSpec.describe "Usage via ruby-jwt" do
   let(:private_key) { RbNaCl::Signatures::Ed25519::SigningKey.new("b" * 32) }
   let(:public_key) { private_key.verify_key }
@@ -42,6 +44,21 @@ RSpec.describe "Usage via ruby-jwt" do
           JWT.encode(payload, public_key, "EdDSA")
         end.to raise_error(JWT::EncodeError)
       end
+    end
+  end
+
+  describe "OKP JWK usage" do
+    let(:jwk)           { JWT::JWK.new(RbNaCl::Signatures::Ed25519::SigningKey.new(SecureRandom.hex)) }
+    let(:public_jwks)   { { keys: [jwk.export, { kid: "not_the_correct_one", kty: "oct", k: "secret" }] } }
+    let(:signed_token)  { JWT.encode(token_payload, jwk.signing_key, "EdDSA", token_headers) }
+    let(:token_payload) { { "data" => "something" } }
+    let(:token_headers) { { kid: jwk.kid } }
+
+    it "decodes the token" do
+      key_loader = ->(_options) { JSON.parse(JSON.generate(public_jwks)) }
+      payload, _header = JWT.decode(signed_token, nil, true,
+                                    { algorithms: ["EDDSA"], jwks: key_loader })
+      expect(payload).to eq(token_payload)
     end
   end
 end

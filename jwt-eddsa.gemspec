@@ -4,7 +4,7 @@ require_relative "lib/jwt/eddsa/version"
 
 Gem::Specification.new do |spec|
   spec.name = "jwt-eddsa"
-  spec.version = JWT::Eddsa::VERSION
+  spec.version = JWT::EdDSA::VERSION
   spec.authors = ["Joakim Antman"]
   spec.email = ["antmanj@gmail.com"]
 
@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/anakinj/jwt-eddsa"
-  spec.metadata["changelog_uri"] = "https://github.com/anakinj/jwt-eddsablob/v#{JWT::Eddsa::VERSION}/CHANGELOG.md"
+  spec.metadata["changelog_uri"] = "https://github.com/anakinj/jwt-eddsablob/v#{JWT::EdDSA::VERSION}/CHANGELOG.md"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "base64"
   spec.add_dependency "jwt", "> 2.8.2"
   spec.add_dependency "rbnacl", "~> 6.0"
 

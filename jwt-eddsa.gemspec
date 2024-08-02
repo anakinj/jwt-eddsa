@@ -8,8 +8,9 @@ Gem::Specification.new do |spec|
   spec.authors = ["Joakim Antman"]
   spec.email = ["antmanj@gmail.com"]
 
-  spec.summary = "jwt EdDSA algorithm extension"
+  spec.summary = "EdDSA algorithm extension for ruby-jwt"
   spec.description = "Extends the ruby-jwt gem with EdDSA signing, verification and JWK importing/exporting"
+
   spec.homepage = "https://github.com/anakinj/jwt-eddsa"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.5"
@@ -35,7 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jwt", "> 2.8.2"
   spec.add_dependency "rbnacl", "~> 6.0"
 
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
   spec.metadata["rubygems_mfa_required"] = "true"
 end

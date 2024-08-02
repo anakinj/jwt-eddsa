@@ -31,12 +31,6 @@
         run: echo "GEM_VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
       - name: Release
         run: bundle exec rake release
-      - name: GH Release
-        uses: ncipollo/release-action@v1
-        with:
-          name: "${{ env.GEM_VERSION }}"
-          html_url: "https://rubygems.org/gems/jwt-eddsa/versions/${{ env.GEM_VERSION }}"
-          bodyFile: "CHANGELOG.md"
       - name: Wait for release to propagate
         run: |
           gem install rubygems-await

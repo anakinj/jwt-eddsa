@@ -35,7 +35,7 @@ payload, header = JWT.decode(token, private_key.verify_key, true, algorithm: "Ed
 
 ```
 bundle install
-bundle exec rspec
+bundle exec rake
 ```
 
 ## Contributing

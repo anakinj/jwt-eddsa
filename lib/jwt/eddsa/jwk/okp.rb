@@ -59,7 +59,7 @@ module JWT
 
         private
 
-        def extract_key_params(key) # rubocop:disable Metric/MethodLength
+        def extract_key_params(key) # rubocop:disable Metrics/MethodLength
           case key
           when JWT::JWK::KeyBase
             key.export(include_private: true)

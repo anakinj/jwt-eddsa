@@ -3,7 +3,6 @@
   "include-v-in-tag": true,
   "packages": {
     ".": {
-      "component": "jwt-eddsa",
       "version-file": "lib/jwt/eddsa/version.rb"
     }
   }

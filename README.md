@@ -1,5 +1,8 @@
 # jwt-eddsa
 
+[![Gem Version](https://badge.fury.io/rb/jwt-eddsa.svg)](https://badge.fury.io/rb/jwt-eddsa)
+[![Build Status](https://github.com/anakinj/jwt-eddsa/workflows/test/badge.svg?branch=main)](https://github.com/jwt/ruby-jwt/actions)
+
 A library extending the ruby-jwt gem with EdDSA algorithms. Based on [RFC 8037](https://datatracker.ietf.org/doc/html/rfc8037).
 
 **NOTE: This gem is still WIP**

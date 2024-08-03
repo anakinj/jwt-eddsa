@@ -37,6 +37,20 @@ RSpec.describe JWT::EdDSA::JWK::OKP do
       end
       it { is_expected.to be_a(described_class) }
     end
+
+    context "when a random key found from the Internet is given" do
+      let(:key) do
+        {
+          "kty" => "OKP",
+          "kid" => "-1909572257",
+          "alg" => "EdDSA",
+          "crv" => "Ed25519",
+          "x" => "XWxGtApfcqmKI7p0OKnF5JSEWMVoLsytFXLEP7xZ_l8"
+        }
+      end
+
+      it { is_expected.to be_a(described_class) }
+    end
   end
 
   describe "#verify_key" do

@@ -3,7 +3,7 @@
 require "securerandom"
 
 RSpec.describe JWT::EdDSA::JWK::OKP do
-  let(:private_key) { RbNaCl::Signatures::Ed25519::SigningKey.new(SecureRandom.hex) }
+  let(:private_key) { Ed25519::SigningKey.new(SecureRandom.hex) }
   let(:public_key)  { private_key.verify_key }
   let(:key)         { nil }
 
@@ -37,13 +37,27 @@ RSpec.describe JWT::EdDSA::JWK::OKP do
       end
       it { is_expected.to be_a(described_class) }
     end
+
+    context "when a random key found from the Internet is given" do
+      let(:key) do
+        {
+          "kty" => "OKP",
+          "kid" => "-1909572257",
+          "alg" => "EdDSA",
+          "crv" => "Ed25519",
+          "x" => "XWxGtApfcqmKI7p0OKnF5JSEWMVoLsytFXLEP7xZ_l8"
+        }
+      end
+
+      it { is_expected.to be_a(described_class) }
+    end
   end
 
   describe "#verify_key" do
     let(:key) { private_key }
     subject { instance.verify_key }
     it "is the verify key" do
-      expect(subject).to be_a(RbNaCl::Signatures::Ed25519::VerifyKey)
+      expect(subject).to be_a(Ed25519::VerifyKey)
     end
   end
 
@@ -91,7 +105,7 @@ RSpec.describe JWT::EdDSA::JWK::OKP do
       let(:import_data) { described_class.new(public_key).export }
       it "creates a new instance of the class" do
         expect(subject.private?).to eq(false)
-        expect(subject.verify_key).to be_a(RbNaCl::Signatures::Ed25519::VerifyKey)
+        expect(subject.verify_key).to be_a(Ed25519::VerifyKey)
         expect(subject.signing_key).to eq(nil)
         expect(subject.verify_key.to_bytes).to eq(public_key.to_bytes)
         expect(subject.kid).to eq(import_data[:kid])
@@ -102,8 +116,8 @@ RSpec.describe JWT::EdDSA::JWK::OKP do
       let(:import_data) { described_class.new(private_key).export(include_private: true) }
       it "creates a new instance of the class" do
         expect(subject.private?).to eq(true)
-        expect(subject.verify_key).to be_a(RbNaCl::Signatures::Ed25519::VerifyKey)
-        expect(subject.signing_key).to be_a(RbNaCl::Signatures::Ed25519::SigningKey)
+        expect(subject.verify_key).to be_a(Ed25519::VerifyKey)
+        expect(subject.signing_key).to be_a(Ed25519::SigningKey)
         expect(subject.verify_key.to_bytes).to eq(public_key.to_bytes)
         expect(subject.kid).to eq(import_data[:kid])
       end
@@ -113,8 +127,8 @@ RSpec.describe JWT::EdDSA::JWK::OKP do
       let(:import_data) { described_class.new(private_key) }
       it "creates a new instance of the class" do
         expect(subject.private?).to eq(true)
-        expect(subject.verify_key).to be_a(RbNaCl::Signatures::Ed25519::VerifyKey)
-        expect(subject.signing_key).to be_a(RbNaCl::Signatures::Ed25519::SigningKey)
+        expect(subject.verify_key).to be_a(Ed25519::VerifyKey)
+        expect(subject.signing_key).to be_a(Ed25519::SigningKey)
         expect(subject.verify_key.to_bytes).to eq(public_key.to_bytes)
         expect(subject.kid).to eq(import_data[:kid])
       end

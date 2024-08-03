@@ -3,7 +3,7 @@
 require "securerandom"
 
 RSpec.describe "Usage via ruby-jwt" do
-  let(:private_key) { RbNaCl::Signatures::Ed25519::SigningKey.new("b" * 32) }
+  let(:private_key) { Ed25519::SigningKey.new("b" * 32) }
   let(:public_key) { private_key.verify_key }
 
   let(:payload) { { "pay" => "load" } }
@@ -18,7 +18,7 @@ RSpec.describe "Usage via ruby-jwt" do
     end
 
     context "when decoding key is wrong" do
-      let(:public_key) { RbNaCl::Signatures::Ed25519::SigningKey.new("a" * 32).verify_key }
+      let(:public_key) { Ed25519::SigningKey.new("a" * 32).verify_key }
       it "raises decoding error" do
         token = JWT.encode(payload, private_key, "EdDSA")
 
@@ -48,7 +48,7 @@ RSpec.describe "Usage via ruby-jwt" do
   end
 
   describe "OKP JWK usage" do
-    let(:jwk)           { JWT::JWK.new(RbNaCl::Signatures::Ed25519::SigningKey.new(SecureRandom.hex)) }
+    let(:jwk)           { JWT::JWK.new(Ed25519::SigningKey.new(SecureRandom.hex)) }
     let(:public_jwks)   { { keys: [jwk.export, { kid: "not_the_correct_one", kty: "oct", k: "secret" }] } }
     let(:signed_token)  { JWT.encode(token_payload, jwk.signing_key, "EdDSA", token_headers) }
     let(:token_payload) { { "data" => "something" } }

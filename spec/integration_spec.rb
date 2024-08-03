@@ -17,6 +17,14 @@ RSpec.describe "Usage via ruby-jwt" do
       end
     end
 
+    context "when encoding with ED25519" do
+      it "executes successfully" do
+        token = JWT.encode(payload, private_key, "ED25519")
+        expect(JWT.decode(token, public_key, true, algorithm: "EdDSA"))
+          .to eq([payload, { "alg" => "EdDSA" }])
+      end
+    end
+
     context "when decoding key is wrong" do
       let(:public_key) { Ed25519::SigningKey.new("a" * 32).verify_key }
       it "raises decoding error" do

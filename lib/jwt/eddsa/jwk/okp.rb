@@ -6,8 +6,7 @@ module JWT
       # https://datatracker.ietf.org/doc/html/rfc8037
       class OKP < ::JWT::JWK::KeyBase
         KTY  = "OKP"
-        KTYS = [KTY, JWT::EdDSA::JWK::OKP, RbNaCl::Signatures::Ed25519::SigningKey,
-                RbNaCl::Signatures::Ed25519::VerifyKey].freeze
+        KTYS = [KTY, JWT::EdDSA::JWK::OKP, Ed25519::SigningKey, Ed25519::VerifyKey].freeze
         OKP_PUBLIC_KEY_ELEMENTS = %i[kty n x].freeze
         OKP_PRIVATE_KEY_ELEMENTS = %i[d].freeze
 
@@ -63,11 +62,11 @@ module JWT
           case key
           when JWT::JWK::KeyBase
             key.export(include_private: true)
-          when RbNaCl::Signatures::Ed25519::SigningKey
+          when Ed25519::SigningKey
             @signing_key = key
             @verify_key = key.verify_key
             parse_okp_key_params(@verify_key, @signing_key)
-          when RbNaCl::Signatures::Ed25519::VerifyKey
+          when Ed25519::VerifyKey
             @signing_key = nil
             @verify_key = key
             parse_okp_key_params(@verify_key)
@@ -75,8 +74,8 @@ module JWT
             key.transform_keys(&:to_sym)
           else
             raise ArgumentError,
-                  "key must be of type RbNaCl::Signatures::Ed25519::SigningKey, " \
-                  "RbNaCl::Signatures::Ed25519::VerifyKey " \
+                  "key must be of type Ed25519::SigningKey, " \
+                  "Ed25519::VerifyKey " \
                   "or Hash with key parameters"
           end
         end
@@ -101,13 +100,13 @@ module JWT
         end
 
         def verify_key_from_parameters
-          RbNaCl::Signatures::Ed25519::VerifyKey.new(::Base64.urlsafe_decode64(self[:x]))
+          Ed25519::VerifyKey.new(::Base64.urlsafe_decode64(self[:x]))
         end
 
         def signing_key_from_parameters
           return nil unless self[:d]
 
-          RbNaCl::Signatures::Ed25519::SigningKey.new(::Base64.urlsafe_decode64(self[:d]))
+          Ed25519::SigningKey.new(::Base64.urlsafe_decode64(self[:d]))
         end
 
         class << self

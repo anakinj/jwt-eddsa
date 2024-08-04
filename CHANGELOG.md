@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.7.0](https://github.com/anakinj/jwt-eddsa/compare/v0.6.0...v0.7.0) (2024-08-04)
+
+
+### Features
+
+* Always set `alg` header to `EdDSA` ([#13](https://github.com/anakinj/jwt-eddsa/issues/13)) ([daaa740](https://github.com/anakinj/jwt-eddsa/commit/daaa740e653c9786c7ac9c5d086ad5ef9c432df7))
+* Replace rbnacl with ed25519 ([#9](https://github.com/anakinj/jwt-eddsa/issues/9)) ([a0f8200](https://github.com/anakinj/jwt-eddsa/commit/a0f8200d1d81ce5807539a54e6fac29c4065ac97))
+* Support the `ED25519` reference when pointing to the algorithm ([#12](https://github.com/anakinj/jwt-eddsa/issues/12)) ([982ecf3](https://github.com/anakinj/jwt-eddsa/commit/982ecf31b68bde8d06bb791de0717b51fb5084e8))
+
 ## [0.6.0](https://github.com/anakinj/jwt-eddsa/compare/v0.5.0...v0.6.0) (2024-08-02)
 
 

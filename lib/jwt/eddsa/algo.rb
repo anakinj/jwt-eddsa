@@ -4,13 +4,13 @@ module JWT
   module EdDSA
     # EdDSA algorithm implementation
     module Algo
-      include JWT::JWA::Algorithm
+      include JWT::JWA::SignatureAlgorithm
 
       register_algorithm("EdDSA")
       register_algorithm("ED25519")
 
       class << self
-        def sign(_algorithm, msg, key)
+        def sign(_alg, msg, key)
           unless key.is_a?(Ed25519::SigningKey)
             raise_sign_error!("Key given is a #{key.class} but needs to be a Ed25519::SigningKey")
           end
@@ -18,7 +18,7 @@ module JWT
           key.sign(msg)
         end
 
-        def verify(_algorithm, public_key, signing_input, signature)
+        def verify(_alg, public_key, signing_input, signature)
           unless public_key.is_a?(Ed25519::VerifyKey)
             raise_verify_error!("Key given is a #{public_key.class} but needs to be a Ed25519::VerifyKey")
           end
@@ -26,6 +26,10 @@ module JWT
           public_key.verify(signature, signing_input)
         rescue Ed25519::VerifyError
           false
+        end
+
+        def header(*)
+          { "alg" => "EdDSA" }
         end
       end
     end

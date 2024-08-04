@@ -7,6 +7,7 @@ module JWT
       include JWT::JWA::SignatureAlgorithm
 
       register_algorithm("EdDSA")
+      register_algorithm("ED25519")
 
       class << self
         def sign(_alg, msg, key)

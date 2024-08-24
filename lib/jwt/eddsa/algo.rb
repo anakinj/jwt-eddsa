@@ -3,35 +3,37 @@
 module JWT
   module EdDSA
     # EdDSA algorithm implementation
-    module Algo
-      include JWT::JWA::SignatureAlgorithm
+    class Algo
+      include JWT::JWA::SigningAlgorithm
 
-      register_algorithm("EdDSA")
-      register_algorithm("ED25519")
-
-      class << self
-        def sign(_alg, msg, key)
-          unless key.is_a?(Ed25519::SigningKey)
-            raise_sign_error!("Key given is a #{key.class} but needs to be a Ed25519::SigningKey")
-          end
-
-          key.sign(msg)
-        end
-
-        def verify(_alg, public_key, signing_input, signature)
-          unless public_key.is_a?(Ed25519::VerifyKey)
-            raise_verify_error!("Key given is a #{public_key.class} but needs to be a Ed25519::VerifyKey")
-          end
-
-          public_key.verify(signature, signing_input)
-        rescue Ed25519::VerifyError
-          false
-        end
-
-        def header(*)
-          { "alg" => "EdDSA" }
-        end
+      def initialize(alg)
+        @alg = alg
       end
+
+      def sign(data:, signing_key:)
+        unless signing_key.is_a?(Ed25519::SigningKey)
+          raise_sign_error!("Key given is a #{signing_key.class} but needs to be a Ed25519::SigningKey")
+        end
+
+        signing_key.sign(data)
+      end
+
+      def verify(data:, signature:, verification_key:)
+        unless verification_key.is_a?(Ed25519::VerifyKey)
+          raise_verify_error!("Key given is a #{verification_key.class} but needs to be a Ed25519::VerifyKey")
+        end
+
+        verification_key.verify(signature, data)
+      rescue Ed25519::VerifyError
+        false
+      end
+
+      def header(*)
+        { "alg" => "EdDSA" }
+      end
+
+      register_algorithm(new("EdDSA"))
+      register_algorithm(new("ED25519"))
     end
   end
 end

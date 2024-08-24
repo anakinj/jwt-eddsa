@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/anakinj/jwt-eddsa/compare/v0.7.0...v0.7.1) (2024-08-24)
+
+
+### Bug Fixes
+
+* Compatibility with ruby-jwt ([#17](https://github.com/anakinj/jwt-eddsa/issues/17)) ([4c674a2](https://github.com/anakinj/jwt-eddsa/commit/4c674a2d628781d6dcc873198f6334a506983cc0))
+
 ## [0.7.0](https://github.com/anakinj/jwt-eddsa/compare/v0.6.0...v0.7.0) (2024-08-04)
 
 

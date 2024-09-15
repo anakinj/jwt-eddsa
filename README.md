@@ -7,11 +7,13 @@ A library extending the ruby-jwt gem with EdDSA algorithms. Based on [RFC 8037](
 
 ## Installation
 
-Add the following to your Gemfile
+Add the gem to your Gemfile:
 
 ```
 gem "jwt-eddsa"
 ```
+
+And in your application add the following require:
 
 ```
 require "jwt/eddsa"

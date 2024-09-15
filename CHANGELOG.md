@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/anakinj/jwt-eddsa/compare/v0.7.1...v0.8.0) (2024-09-15)
+
+
+### Features
+
+* Officially supported by ruby-jwt ([#19](https://github.com/anakinj/jwt-eddsa/issues/19)) ([cca6ecf](https://github.com/anakinj/jwt-eddsa/commit/cca6ecf3fb0054bee0c102af824584e80eccc1b6))
+
 ## [0.7.1](https://github.com/anakinj/jwt-eddsa/compare/v0.7.0...v0.7.1) (2024-08-24)
 
 

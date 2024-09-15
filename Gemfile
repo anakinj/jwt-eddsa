@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "jwt", github: "anakinj/ruby-jwt", branch: "extendable-algos"
+gem "jwt"
 gem "rake"
 gem "rspec"
 gem "rubocop"

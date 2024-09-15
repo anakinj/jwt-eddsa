@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "base64"
   spec.add_dependency "ed25519"
-  spec.add_dependency "jwt", "> 2.8.2"
+  spec.add_dependency "jwt", ">= 2.9.0"
 
   spec.metadata["rubygems_mfa_required"] = "true"
 end

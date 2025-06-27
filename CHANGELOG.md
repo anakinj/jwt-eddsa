@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.1](https://github.com/jwt/ruby-jwt-eddsa/compare/v0.8.0...v0.8.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* Change the urls for the repo ([#22](https://github.com/jwt/ruby-jwt-eddsa/issues/22)) ([238d2ed](https://github.com/jwt/ruby-jwt-eddsa/commit/238d2ed6719d8f5e83e74907ac7ea81b4184bf05))
+
 ## [0.8.0](https://github.com/anakinj/jwt-eddsa/compare/v0.7.1...v0.8.0) (2024-09-15)
 
 

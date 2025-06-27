@@ -1,7 +1,7 @@
 # jwt-eddsa
 
 [![Gem Version](https://badge.fury.io/rb/jwt-eddsa.svg)](https://badge.fury.io/rb/jwt-eddsa)
-[![Build status](https://github.com/anakinj/jwt-eddsa/actions/workflows/test.yml/badge.svg)](https://github.com/anakinj/jwt-eddsa/actions/workflows/test.yml)
+[![Build status](https://github.com/jwt/ruby-jwt-eddsa/actions/workflows/test.yml/badge.svg)](https://github.com/jwt/ruby-jwt-eddsa/actions/workflows/test.yml)
 
 A library extending the ruby-jwt gem with EdDSA algorithms. Based on [RFC 8037](https://datatracker.ietf.org/doc/html/rfc8037).
 
@@ -36,7 +36,7 @@ bundle exec rake
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/anakinj/jwt-eddsa. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/anakinj/jwt-eddsa/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/jwt/ruby-jwt-eddsa. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/jwt/ruby-jwt-eddsa/blob/main/CODE_OF_CONDUCT.md).
 
 In this repository, pull request titles must follow the [Conventional Commit](https://www.conventionalcommits.org/) specification to ensure clear and consistent communication of changes.
 
@@ -46,4 +46,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the jwt-eddsa project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/anakinj/jwt-eddsa/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the jwt-eddsa project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/jwt/ruby-jwt-eddsa/blob/main/CODE_OF_CONDUCT.md).

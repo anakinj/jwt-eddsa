@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/jwt/ruby-jwt-eddsa/compare/v0.8.1...v0.9.0) (2025-06-28)
+
+
+### Features
+
+* Support resolving JWA from crv parameter in JWK ([#24](https://github.com/jwt/ruby-jwt-eddsa/issues/24)) ([76ab43b](https://github.com/jwt/ruby-jwt-eddsa/commit/76ab43b14c27f477c78e6a8aaee7bcfb56d1d4a7))
+
 ## [0.8.1](https://github.com/jwt/ruby-jwt-eddsa/compare/v0.8.0...v0.8.1) (2025-06-27)
 
 

@@ -56,6 +56,12 @@ module JWT
           exported
         end
 
+        def jwa
+          return super if self[:alg]
+
+          JWA.resolve("EdDSA") if self[:crv] == "Ed25519"
+        end
+
         private
 
         def extract_key_params(key) # rubocop:disable Metrics/MethodLength

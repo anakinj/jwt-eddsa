@@ -69,4 +69,17 @@ RSpec.describe "Usage via ruby-jwt" do
       expect(payload).to eq(token_payload)
     end
   end
+
+  describe "JWK as key" do
+    let(:jwk) { JWT::JWK.new(Ed25519::SigningKey.new(SecureRandom.hex)) }
+
+    it "signs and verifies using the jwk" do
+      token = JWT::Token.new(payload: {}, header: {})
+
+      token.sign!(algorithm: "EdDSA", key: jwk)
+
+      encoded_token = JWT::EncodedToken.new(token.jwt)
+      encoded_token.verify!(signature: { algorithm: %w[HS256 EdDSA], key: jwk })
+    end
+  end
 end
